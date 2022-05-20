@@ -58,17 +58,9 @@ class Vehicle:
             print("There are no cars in the database.")
         else:
             print("\n")
+            #print list of cars from the database
             for car in range(len(self.car_db)):
                 self.car_db[car].showInfo(self.car_db[car])
-    
-
-
-
-
-
-
-
-
 
     #return the car's make
     def getMake(self):

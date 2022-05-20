@@ -73,8 +73,8 @@ class Main():
             elif(answer == '3'):
                  car.showInfo()    
 
-            elif(answer == 'q'):
-                user_input = False #exit the program
+            elif(answer == '4'):
+                user_input = False
 
             else:
                 print("Invalid input: try again.")
