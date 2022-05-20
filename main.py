@@ -14,3 +14,5 @@ class Main():
     car1.updateMilage(car1, 54)
     car1.updateMilage(car1, 28)
     car1.updateMilage(car1, 76)
+
+    print("\n")
