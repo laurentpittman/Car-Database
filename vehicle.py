@@ -1,10 +1,64 @@
+import random
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+ Vehicle Class:  
+    This is the parent class for Vehicle. This class is used to initialize
+car objects in main.py. A vehicle contains a make, model, and year, as 
+well as milage. In this class, the user can update the make, model, 
+year, and milage in addition to getting any information from the
+attributes listed above. 
+   
+    Child classes include: electricVehicle.py and hybridVehicle.py
+    Subclasses include: battery.py
+
+Author: Lauren Pittman   Date: 05/20/2022    
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 class Vehicle:
+
+    car_db = []
+
     #constructor
-    def __init__(self, make, model, year):
+    def __init__(self, make, model, year, price):
+        self.carID = random.randint(0,10000)
         self.make = make
         self.model = model
         self.year = year
+        self.price = price
         self.milage = 0
+    
+    #creating a car
+    def create(self):
+        print("Enter in the following to create a car: ")
+        car_make = input("Make: ")
+        car_model = input("Model: ")
+        car_year = input("Year: ")
+        car_price = input("Price: ")
+        car_milage = input("Milage: ")
+
+        car = Vehicle(car_make, car_model, car_year, car_price)
+        #place car into the database
+        self.car_db.append(car)
+
+        msg = "The {} {} has been placed into the database."
+        print(msg.format(car.getYear(), car.getMake()))
+
+        car.showInfo(car)
+
+    #store the car into the database
+    def storeCar(self, car): #---------------------------------------
+        return 1
+    
+    #return the car's information
+    def showInfo(self, car):
+        msg = "{}:   {}   {}   {}   {}   ${}\n"
+        print(msg.format(car.carID, car.make, car.model, car.year, car.milage, car.price))
+    
+    #print the list of cars ************************************
+    def printList(self):
+       # for car in range(len(self.car_db)):
+       #     print(self.car_db[car])
+       return self.car_db
     
     #return the car's make
     def getMake(self):
@@ -39,6 +93,17 @@ class Vehicle:
         msg = "The {} make's year has been updated from {} to {}."
         print(msg.format(car.getMake(), orig, self.getYear()))
 
+    #return the car's price
+    def getPrice(self):
+        return self.price
+    
+    #update the car's price
+    def updatePrice(self, car, new_price):
+        orig = self.price
+        self.price = new_price
+        msg = "The {} make's price has been updated from ${} to ${}."
+        print(msg.format(car.getMake(), orig, self.getPrice()))     
+
     #return the car's milage
     def getMilage(self):
         return self.milage
@@ -53,3 +118,11 @@ class Vehicle:
             self.milage = new_milage
             msg = "The {}'s milage has been updated from {} to {}."
             print(msg.format(car.getMake(), orig, self.milage))
+
+    #buy a car
+    def buyCar(self, car):
+        return 1
+
+    #sell a car
+    def sellCar(self, car):
+        return 1
