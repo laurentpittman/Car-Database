@@ -22,16 +22,13 @@ class Main():
     #initialize empty car object
     car = Vehicle(make,model,year,price)
 
+    #add pre-existing car to database
     car1 = Vehicle("Hyundai", "Accent", 2020, 16000)
     car1.storeCar(car1)
     car2 = Vehicle("Toyota", "Camry", 2018, 18500)
     car2.storeCar(car2)
     car3 = Vehicle("Honda", "Accord", 2020, 25000)
     car3.storeCar(car3)
-
-    for x in range(len(Vehicle.car_db)):
-        print(Vehicle.car_db[x])
-
 
     #create a while loop for a employee
     user_input = True
@@ -71,12 +68,11 @@ class Main():
                 car.create()
 
             elif(answer == '2'):
-                Vehicle.car_db.printList()
+                car.printList()
 
-            elif(answer == '3'): #-----------------------------
-                for car in range(len(Vehicle.car_db)):
-                    print(Vehicle.car_db[car])
-            
+            elif(answer == '3'):
+                 car.showInfo()    
+
             elif(answer == 'q'):
                 user_input = False #exit the program
 

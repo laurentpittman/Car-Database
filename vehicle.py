@@ -43,23 +43,33 @@ class Vehicle:
         msg = "The {} {} has been placed into the database."
         print(msg.format(car.getYear(), car.getMake()))
 
-        car.showInfo(car)
-
     #store the car into the database
-    def storeCar(self, car): #---------------------------------------
-        return 1
+    def storeCar(self, car):
+        self.car_db.append(car)
     
     #return the car's information
     def showInfo(self, car):
-        msg = "{}:   {}   {}   {}   {}   ${}\n"
+        msg = "ID: {}  {}   {}   {}   {}   ${}\n"
         print(msg.format(car.carID, car.make, car.model, car.year, car.milage, car.price))
     
-    #print the list of cars ************************************
+    #print the list of cars
     def printList(self):
-       # for car in range(len(self.car_db)):
-       #     print(self.car_db[car])
-       return self.car_db
+        if(len(self.car_db) == 0):
+            print("There are no cars in the database.")
+        else:
+            print("\n")
+            for car in range(len(self.car_db)):
+                self.car_db[car].showInfo(self.car_db[car])
     
+
+
+
+
+
+
+
+
+
     #return the car's make
     def getMake(self):
         return self.make
