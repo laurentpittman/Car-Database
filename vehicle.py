@@ -1,4 +1,4 @@
-import random
+import itertools
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
  Vehicle Class:  
@@ -15,12 +15,13 @@ Author: Lauren Pittman   Date: 05/20/2022
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 class Vehicle:
-
+    
     car_db = []
+    carID = itertools.count()
 
     #constructor
     def __init__(self, make, model, year, price):
-        self.carID = random.randint(0,10000)
+        self.carID = next(self.carID)
         self.make = make
         self.model = model
         self.year = year
@@ -37,6 +38,7 @@ class Vehicle:
         car_milage = input("Milage: ")
 
         car = Vehicle(car_make, car_model, car_year, car_price)
+        car.carID = self.carID + 1
         #place car into the database
         self.car_db.append(car)
 
@@ -52,15 +54,59 @@ class Vehicle:
         msg = "ID: {}  {}   {}   {}   {}   ${}\n"
         print(msg.format(car.carID, car.make, car.model, car.year, car.milage, car.price))
     
+    #return car ID
+    def getCarID(self):
+        return self.carID
+    
     #print the list of cars
     def printList(self):
         if(len(self.car_db) == 0):
             print("There are no cars in the database.")
         else:
-            print("\n")
+            print("\nCar Database:")
             #print list of cars from the database
             for car in range(len(self.car_db)):
                 self.car_db[car].showInfo(self.car_db[car])
+
+
+
+
+
+    def updateCar(self, car):
+        print("  1. make\n  2. model\n  3. year\n  4. milage\n  5. price\n")
+        answer = input("What would you like to update? ")
+
+        if(answer == '1'):
+            answer = input("What would you like to change the make to? ")
+            car.updateMake(car, answer)
+
+        elif(answer == '2'):
+            answer = input("What would you like to change the model to? ")
+            car.updateModel(car, answer)
+
+        elif(answer == '3'):
+            answer = input("What would you like to change the year to? ")
+            car.updateYear(car, answer)
+
+        elif(answer == '4'):
+            answer = input("What would you like to change the milage to? ")
+            car.updateMilage(car,answer)
+
+        elif(answer == '5'):
+            answer = input("What would you like to change the price to? ")
+            car.updatePrice(car, answer)
+
+        else:
+            print("Invalid input: try again.")
+
+
+
+
+
+
+
+
+
 
     #return the car's make
     def getMake(self):
